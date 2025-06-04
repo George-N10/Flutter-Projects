@@ -65,7 +65,7 @@ class _pointsCounterState extends State<PointsCounter> {
                         backgroundColor: Colors.orange,
                         minimumSize: Size(140, 50),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(9)),
+                            borderRadius: BorderRadius.circular(8)),
                       ),
                       onPressed: () {
                         setState(() {
