@@ -18,7 +18,6 @@ class HomeView extends StatelessWidget {
             Text(
               "NEWS ",
               style: TextStyle(
-                color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),
