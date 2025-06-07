@@ -18,7 +18,7 @@ A simple and elegant Flutter application that displays the latest news articles 
 - **Flutter** – Cross-platform UI framework.
 - **Dart** – Programming language used by Flutter.
 - **NewsAPI** – News data source (https://newsapi.org).
-- **HTTP Package** – For handling network requests.
+- **Dio Package** – For handling network requests.
 
 ---
 
