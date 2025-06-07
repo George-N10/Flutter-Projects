@@ -10,6 +10,7 @@ A simple and elegant Flutter application that displays the latest news articles 
 - 🗂️ Browse articles by category (e.g., Business, Sports, Technology).
 - 🌙 Supports both Light and Dark Mode.
 - 📱 Clean and responsive UI for all screen sizes.
+- 🔍 Search functionality for finding news by keywords.
 
 ---
 
@@ -21,6 +22,8 @@ A simple and elegant Flutter application that displays the latest news articles 
 - **Dio Package** – For handling network requests.
 
 ---
+## 📸 Screenshots
+
 
 ## 🚀 Getting Started
 
