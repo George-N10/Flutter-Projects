@@ -8,9 +8,9 @@ A simple and elegant Flutter application that displays the latest news articles 
 
 - 📡 Displays real-time latest news using NewsAPI.
 - 🗂️ Browse articles by category (e.g., Business, Sports, Technology).
+- 🔍 Search functionality for finding news by keywords.
 - 🌙 Supports both Light and Dark Mode.
 - 📱 Clean and responsive UI for all screen sizes.
-- 🔍 Search functionality for finding news by keywords.
 
 ---
 
@@ -24,6 +24,7 @@ A simple and elegant Flutter application that displays the latest news articles 
 ---
 ## 📸 Screenshots
 
+---
 
 ## 🚀 Getting Started
 
