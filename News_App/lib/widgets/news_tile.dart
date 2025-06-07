@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/article_model.dart';
+import 'package:news_app/Config/Theme.dart';
 
 class NewsTile extends StatelessWidget {
   const NewsTile({super.key, required this.articleModel});
@@ -43,7 +44,6 @@ class NewsTile extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
-                color: Colors.black87,
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
               ),
@@ -52,7 +52,7 @@ class NewsTile extends StatelessWidget {
             Text(
               articleModel.subTitle ?? '',
               maxLines: 2,
-              style: const TextStyle(color: Colors.grey, fontSize: 14),
+              style: Theme.of(context).textTheme.labelSmall,
             ),
           ],
         ),
