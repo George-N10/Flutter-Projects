@@ -21,6 +21,8 @@ A simple and elegant Flutter application that displays the latest news articles 
 - **Dio Package** – For handling network requests.
 
 ---
+## 📸 Screenshots
+
 
 ## 🚀 Getting Started
 
