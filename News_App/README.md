@@ -23,9 +23,12 @@ A simple and elegant Flutter application that displays the latest news articles 
 
 ---
 ## 📸 Screenshots
+<img src="https://github.com/George-N10/Flutter-Project/blob/f318891a1785edadaad841f8ea224fd4a4fb1c85/News_App/44.jpg" alt="Home Screen" width="300"/>
+<img src="https://github.com/George-N10/Flutter-Project/blob/b57d727da6c41bc24e2862587d52fb20d8623048/News_App/11.jpg" alt="Home Screen" width="300"/>
+<img src="https://github.com/George-N10/Flutter-Project/blob/b57d727da6c41bc24e2862587d52fb20d8623048/News_App/22.jpg" alt="Home Screen" width="300"/>
+<img src="https://github.com/George-N10/Flutter-Project/blob/b57d727da6c41bc24e2862587d52fb20d8623048/News_App/33.jpg" alt="Home Screen" width="300"/>
 
 ---
-
 ## 🚀 Getting Started
 
 ### Prerequisites
