@@ -23,7 +23,7 @@ A simple and elegant Flutter application that displays the latest news articles 
 
 ---
 ## 📸 Screenshots
-![image alt](https://github.com/George-N10/Flutter-Project/blob/57bd0841c2d40e93fa3fa34632d82788e991f4b0/News_App/11.jpg)
+![image alt](https://github.com/George-N10/Flutter-Project/blob/57bd0841c2d40e93fa3fa34632d82788e991f4b0/News_App/11.jpg) ![image alt](https://github.com/George-N10/Flutter-Project/blob/f318891a1785edadaad841f8ea224fd4a4fb1c85/News_App/44.jpg)
 ---
 
 ## 🚀 Getting Started
