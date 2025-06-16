@@ -4,14 +4,15 @@ class ArticleModel {
   final String title;
   final String? subTitle;
 
-  ArticleModel(                  //constructor
+  ArticleModel(                  
       {required this.image, required this.title, required this.subTitle});
 
-  // factory ArticleModel.fromJson(json) {
-  //   return ArticleModel(
-  //     image: json['urlToImage'],
-  //     title: json['title'],
-  //     subTitle: json['description'],
-  //   );
-  // }
+  // factory constructor (named const.)
+  factory ArticleModel.fromJson(json) {
+    return ArticleModel(
+      image: json['urlToImage'],
+      title: json['title'],
+      subTitle: json['description'],
+    );
+  }
 }

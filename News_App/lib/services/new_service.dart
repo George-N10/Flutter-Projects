@@ -24,11 +24,8 @@ class NewsService {
 
       // store every artical map in jsonData into this object (articleModel)
       for (var article in articles) {
-        ArticleModel articleModel = ArticleModel(
-          image: article['urlToImage'],
-          title: article['title'],
-          subTitle: article['description'],
-        );
+        ArticleModel articleModel = ArticleModel.fromJson(article);
+
         // add the object (articleModel) into List (articalList)
         articlesList.add(articleModel);
       }
