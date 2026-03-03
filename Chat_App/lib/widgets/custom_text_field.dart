@@ -7,12 +7,14 @@ class CustomFormTextField extends StatefulWidget {
     super.key,
     required this.icon,
     this.obscureText = false,
+    required TextInputType inputType,
   });
 
   String? hintText;
   IconData? icon;
   bool obscureText;
   Function(String)? onChange;
+  TextInputType? inputType;
 
   @override
   State<CustomFormTextField> createState() => _CustomFormTextFieldState();
@@ -32,6 +34,7 @@ class _CustomFormTextFieldState extends State<CustomFormTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: widget.inputType,
       obscureText: _isObsecure,
       validator: (data) {
         if (data!.isEmpty) return 'field is required';

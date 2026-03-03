@@ -52,15 +52,30 @@ class _ChatPageState extends State<ChatPage> {
             messagesList.add(Message.fromJson(snapshot.data!.docs[i]));
           }
           return Scaffold(
+            backgroundColor: Color(0xffF0F2F5), // Light greyish background for modern chatting apps
             appBar: AppBar(
               automaticallyImplyLeading: true,
               iconTheme: IconThemeData(color: Colors.white),
+              elevation: 2,
+              shadowColor: Colors.black.withOpacity(0.5),
               backgroundColor: kPrimaryColor,
+              centerTitle: true,
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.asset(KLogo, height: 65),
-                  Text(' Chat', style: TextStyle(color: Colors.white)),
+                  Hero(
+                    tag: 'logo',
+                    child: Image.asset(KLogo, height: 40),
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Scholar Chat',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -79,30 +94,72 @@ class _ChatPageState extends State<ChatPage> {
                     },
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 26),
-                  child: TextField(
-                    controller: controller,
-                    onSubmitted: (data) {
-                      sendMessage(email); // استدعاء الدالة عند ضغط انتر
-                    },
-                    decoration: InputDecoration(
-                      // تفعيل زرار الارسال الجانبي
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          sendMessage(email); // استدعاء الدالة عند ضغط الايقونة
-                        },
-                        icon: Icon(Icons.send_rounded, color: kPrimaryColor),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        offset: Offset(0, -2),
+                        blurRadius: 10,
                       ),
-                      hintText: 'Type a message...',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide(color: kPrimaryColor),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide(color: kPrimaryColor),
-                      ),
+                    ],
+                  ),
+                  child: SafeArea(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xffF0F2F5),
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            child: TextField(
+                              controller: controller,
+                              onSubmitted: (data) {
+                                sendMessage(email);
+                              },
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                                hintText: 'Type a message...',
+                                hintStyle: TextStyle(color: Colors.grey[600]),
+                                border: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 12),
+                        GestureDetector(
+                          onTap: () {
+                            sendMessage(email);
+                          },
+                          child: Container(
+                            height: 48,
+                            width: 48,
+                            decoration: BoxDecoration(
+                              color: kPrimaryColor,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: kPrimaryColor.withOpacity(0.4),
+                                  blurRadius: 8,
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.send_rounded,
+                                color: Colors.white,
+                                size: 24,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -110,7 +167,7 @@ class _ChatPageState extends State<ChatPage> {
             ),
           );
         } else {
-          return Center(child: CircularProgressIndicator());
+          return Scaffold(body: Center(child: CircularProgressIndicator()));
         }
       },
     );

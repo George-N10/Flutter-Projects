@@ -33,119 +33,170 @@ class _LoginPageState extends State<LoginPage> {
       inAsyncCall: isLoading,
       child: Scaffold(
         backgroundColor: kPrimaryColor,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Form(
-            key: formKey,
-            child: ListView(
-              children: [
-                SizedBox(height: 130),
-                Image.asset('assets/images/scholar.png', height: 100),
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Scholer Chat',
-                    style: TextStyle(
-                      fontSize: 34,
-                      color: Colors.white,
-                      fontFamily: 'pacifico',
-                    ),
-                  ),
-                ),
-                SizedBox(height: 90),
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                kPrimaryColor,
+                Color(0xff112031), // darker shade of primary color
+              ],
+            ),
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Form(
+                key: formKey,
+                child: CustomScrollView(
+                  slivers: [
+                    SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Spacer(flex: 3),
+                          Hero(
+                            tag: 'logo',
+                            child: Image.asset(
+                              'assets/images/scholar.png',
+                              height: 100,
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            'Scholar Chat',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 32,
+                              color: Colors.white,
+                              fontFamily: 'pacifico',
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black26,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 4,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Spacer(flex: 2),
+                          Text(
+                            'Welcome Back',
+                            style: TextStyle(
+                              fontSize: 28,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Sign in to your account',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white70,
+                            ),
+                          ),
+                          SizedBox(height: 32),
+                          CustomFormTextField(
+                            onChange: (data) {
+                              email = data;
+                            },
+                            hintText: 'Email Address',
+                            icon: Icons.email_outlined,
+                            inputType: TextInputType.emailAddress,
+                          ),
+                          SizedBox(height: 16),
+                          CustomFormTextField(
+                            obscureText: true,
+                            onChange: (data) {
+                              password = data;
+                            },
+                            hintText: 'Password',
+                            icon: Icons.lock_outline,
+                            inputType: TextInputType.text,
+                          ),
+                          SizedBox(height: 32),
+                          CustomButton(
+                            onTap: () async {
+                              if (formKey.currentState!.validate()) {
+                                isLoading = true;
+                                setState(() {});
+                                try {
+                                  await loginUser();
+                                  Navigator.pushNamed(
+                                    context,
+                                    ChatPage.id,
+                                    arguments: email,
+                                  );
+                                } on FirebaseAuthException catch (e) {
+                                  // 1. اطبع الكود عشان تشوفه بعينك في الـ Console
+                                  print("Error Code: ${e.code}");
+                                  print(" The error message is: ${e.message}");
 
-                // SizedBox(height: 30),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'LOGIN',
-                    style: TextStyle(
-                      fontSize: 28,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 12),
-                CustomFormTextField(
-                  onChange: (data) {
-                    email = data;
-                  },
-                  hintText: 'Enter your email...',
-                  icon: Icons.email,
-                ),
-                SizedBox(height: 18),
-                CustomFormTextField(
-                  obscureText: true,
-                  onChange: (data) {
-                    password = data;
-                  },
-                  hintText: 'Enter your password...',
-                  icon: Icons.password_outlined,
-                ),
-                SizedBox(height: 22),
-                CustomButton(
-                  onTap: () async {
-                    if (formKey.currentState!.validate()) {
-                      isLoading = true;
-                      setState(() {});
-                      try {
-                        await loginUser();
-                        Navigator.pushNamed(
-                          context,
-                          ChatPage.id,
-                          arguments: email,
-                        );
-                      } on FirebaseAuthException catch (e) {
-                        // 1. اطبع الكود عشان تشوفه بعينك في الـ Console
-                        print("Error Code: ${e.code}");
-                        print(" The error message is: ${e.message}");
-
-                        // 2. التعديل الجديد: ضيف احتمال invalid-credential
-                        if (e.code == 'user-not-found') {
-                          showSnackBar(
-                            context,
-                            'No user found for that email.',
-                          );
-                        } else if (e.code == 'wrong-password') {
-                          showSnackBar(context, 'Wrong password provided.');
-                        } else if (e.code == 'invalid-credential') {
-                          // هو ده اللي بييجي دلوقتي لما الباسورد يكون غلط أو الإيميل مش موجود
-                          showSnackBar(context, 'Invalid Email or Password.');
-                        }
-                      } catch (ex) {
-                        showSnackBar(context, 'There was an error');
-                      }
-                    }
-                    isLoading = false;
-                    setState(() {});
-                  },
-                  title: 'Login',
-                ),
-                SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Don\'t have an account?  ',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, RegisterPage.id);
-                      },
-                      child: Text(
-                        'Register here',
-                        style: TextStyle(
-                          color: Color(0xffc0e6fd),
-                          fontSize: 18,
-                        ),
+                                  // 2. التعديل الجديد: ضيف احتمال invalid-credential
+                                  if (e.code == 'user-not-found') {
+                                    showSnackBar(
+                                      context,
+                                      'No user found for that email.',
+                                    );
+                                  } else if (e.code == 'wrong-password') {
+                                    showSnackBar(
+                                      context,
+                                      'Wrong password provided.',
+                                    );
+                                  } else if (e.code == 'invalid-credential') {
+                                    // هو ده اللي بييجي دلوقتي لما الباسورد يكون غلط أو الإيميل مش موجود
+                                    showSnackBar(
+                                      context,
+                                      'Invalid Email or Password.',
+                                    );
+                                  }
+                                } catch (ex) {
+                                  showSnackBar(context, 'There was an error');
+                                }
+                              }
+                              isLoading = false;
+                              setState(() {});
+                            },
+                            title: 'SIGN IN',
+                          ),
+                          Spacer(flex: 3),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Don\'t have an account? ',
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(context, RegisterPage.id);
+                                },
+                                child: Text(
+                                  'Register Now',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 24),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
         ),

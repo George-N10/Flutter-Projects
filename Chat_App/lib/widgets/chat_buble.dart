@@ -6,26 +6,33 @@ import '../models/message.dart';
 class ChatBuble extends StatelessWidget {
   const ChatBuble({super.key, required this.message});
   final Message message;
+
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        padding: EdgeInsets.all(14),
-        margin: EdgeInsets.all(14),
-        // height: 75,
-        // width: 200,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(30),
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+            bottomLeft: Radius.circular(0), // sharp corner for tail effect
           ),
           color: kPrimaryColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 4,
+              offset: Offset(0, 2),
+            ),
+          ],
         ),
         child: Text(
           message.message,
-          style: TextStyle(fontSize: 24, color: Colors.white),
+          style: TextStyle(fontSize: 16, color: Colors.white, height: 1.3),
         ),
       ),
     );
@@ -35,26 +42,35 @@ class ChatBuble extends StatelessWidget {
 class ChatBubleForFriend extends StatelessWidget {
   const ChatBubleForFriend({super.key, required this.message});
   final Message message;
+
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        padding: EdgeInsets.all(14),
-        margin: EdgeInsets.all(14),
-        // height: 75,
-        // width: 200,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30),
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
+            bottomRight: Radius.circular(0), // sharp corner for tail effect
           ),
-          color: Color(0xff007e98),
+          color: Color(
+            0xff274C77,
+          ), // Lighter slate blue matching the primary color family
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 4,
+              offset: Offset(0, 2),
+            ),
+          ],
         ),
         child: Text(
           message.message,
-          style: TextStyle(fontSize: 24, color: Colors.white),
+          style: TextStyle(fontSize: 16, color: Colors.white, height: 1.3),
         ),
       ),
     );
